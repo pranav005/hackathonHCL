@@ -1,4 +1,4 @@
-package com.creditcard.cardApplication.entity;
+package com.creditcard.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

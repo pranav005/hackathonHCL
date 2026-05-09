@@ -1,16 +1,17 @@
-package com.creditcard.cardApplication.entity;
+package com.creditcard.entity;
+
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "credit_card_type")
+@Table(name = "employment_type")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreditCardType {
+public class EmploymentType {
 
     @Id
     @Column(name = "id")
