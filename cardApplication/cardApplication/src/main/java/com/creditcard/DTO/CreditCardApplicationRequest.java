@@ -1,6 +1,6 @@
 package com.creditcard.DTO;
 
-public class CreditCardApplication {
+public class CreditCardApplicationRequest {
     private String applicationStatus;
     private String cardType;
     private String comments;
