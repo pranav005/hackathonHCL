@@ -64,4 +64,10 @@ public class CreditCardApplication {
 
     @Column(name = "document_number")
     private String documentNumber;
+
+    @Column(name = "credit_score")
+    private Integer creditScore;
+
+    @Column(name = "credit_limit")
+    private Long creditLimit;
 }

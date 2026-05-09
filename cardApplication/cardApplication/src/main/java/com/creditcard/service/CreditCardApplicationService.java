@@ -1,10 +1,9 @@
 package com.creditcard.service;
 
 import com.creditcard.DTO.CreditCardApplicationRequest;
+import com.creditcard.DTO.CreditCardApplicationResponse;
 
 public interface CreditCardApplicationService {
 
-    public CreditCardApplicationRequest saveApplication(CreditCardApplicationRequest application);
-
-    public CreditCardApplicationRequest updateApplication(CreditCardApplicationRequest application);
+    CreditCardApplicationResponse applyForCreditCard(CreditCardApplicationRequest request);
 }

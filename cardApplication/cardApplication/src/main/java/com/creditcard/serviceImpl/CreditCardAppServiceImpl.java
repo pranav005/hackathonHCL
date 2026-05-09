@@ -1,32 +1,48 @@
-// package com.creditcard.serviceImpl;
+package com.creditcard.serviceImpl;
 
-// import java.util.List;
+import com.creditcard.DTO.CreditCardApplicationRequest;
+import com.creditcard.DTO.CreditCardApplicationResponse;
+import com.creditcard.entity.CreditCardApplication;
+import com.creditcard.repository.CreditCardApplicationRepository;
+import com.creditcard.service.CreditCardApplicationService;
+import org.springframework.stereotype.Service;
 
-// import org.springframework.stereotype.Service;
+import java.time.LocalDate;
 
-// import com.creditcard.DTO.CreditCardApplication;
+@Service
+public class CreditCardAppServiceImpl implements CreditCardApplicationService {
 
-// @Service
-// public class CreditCardAppServiceImpl {
+    private static final byte STATUS_NEW = 0;
 
-//     private final CreditCardApplicationRepository repository;
+    private final CreditCardApplicationRepository repository;
 
-//     public CreditCardApplicationServiceImpl(CreditCardApplicationRepository repository) {
-//         this.repository = repository;
-//     }
+    public CreditCardAppServiceImpl(CreditCardApplicationRepository repository) {
+        this.repository = repository;
+    }
 
-//     @Override
-//     public CreditCardApplication saveApplication(CreditCardApplication application) {
-//         return repository.save(application);
-//     }
+    @Override
+    public CreditCardApplicationResponse applyForCreditCard(CreditCardApplicationRequest request) {
+        CreditCardApplication application = CreditCardApplication.builder()
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .dateOfBirth(LocalDate.parse(request.getDateOfBirth()))
+                .mobileNo(Long.parseLong(request.getMobile()))
+                .email(request.getEmail())
+                .documentType(request.getDocumentType())
+                .documentNumber(request.getDocumentNumber())
+                .address(request.getAddress())
+                .employmentType(request.getEmploymentType())
+                .annualIncome(request.getAnnualSalary().longValue())
+                .applicationStatus(STATUS_NEW)
+                .createdAt(LocalDate.now())
+                .updatedAt(LocalDate.now())
+                .build();
 
-//     @Override
-//     public List<CreditCardApplication> getPendingApplications() {
-//         return repository.findByStatus("PENDING");
-//     }
+        CreditCardApplication saved = repository.save(application);
 
-//     @Override
-//     public CreditCardApplication updateApplication(CreditCardApplication application) {
-//         return repository.save(application);
-//     }
-// }
+        return new CreditCardApplicationResponse(
+                saved.getCreditCardApplicationId(),
+                "Application Received for Credit Card"
+        );
+    }
+}
