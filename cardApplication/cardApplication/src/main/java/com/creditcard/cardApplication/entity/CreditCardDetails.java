@@ -16,6 +16,7 @@ import java.util.UUID;
 @Builder
 public class CreditCardDetails {
 
+
     @Id
     @GeneratedValue
     @Column(name = "card_id")
